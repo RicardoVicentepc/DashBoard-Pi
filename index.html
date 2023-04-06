@@ -23,14 +23,16 @@
 
     #graficoLucroePerda,
     #graficoCaminhao,
-    #graficoLucroEmReais {
+    #graficoLucroEmReais,
+    #Temperatura,
+    #Umidade {
         margin-right: 45px;
         border: 1px solid black;
         border-radius: 25px;
     }
     .low{
         padding: 60px;
-        margin-top: 23%;
+        margin-top: 3%;
         padding-inline: 35px;
         background-color: rgb(169, 182, 169);
         transition: 10s right;
@@ -72,6 +74,15 @@
         <canvas id="graficoLucroEmReais">
 
         </canvas>
+        
+    </div>
+    <div class="graficos">
+        <canvas id="Temperatura">
+
+        </canvas>
+        <canvas id="Umidade">
+
+        </canvas>
     </div>
     
     <div class="low">
@@ -110,6 +121,10 @@
     const desc = ['Lucro em Reais', 'Perda em Reais']
     const DinheiroEconomizado = 156486
     const DinheiroPerdido = 56710
+
+    const temp = document.getElementById('Temperatura');
+    const umi = document.getElementById('Umidade');
+
 
 
     new Chart(graficoLucroePerda, {
@@ -185,6 +200,48 @@
                 backgroundColor: ['green', 'red'],
                 borderColor: 'black',
                 data: [DinheiroEconomizado, DinheiroPerdido],
+                borderWidth: 2,
+
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+    new Chart(temp, {
+        type: 'line',
+        data: {
+            labels: ['12:00','13:00','14:00','15:00','16:00','17:00'],
+            datasets: [{
+                label: 'Temperatura',
+                backgroundColor: 'blue',
+                borderColor: 'black',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 2,
+
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+    new Chart(umi, {
+        type: 'line',
+        data: {
+            labels: ['12:00','13:00','14:00','15:00','16:00','17:00'],
+            datasets: [{
+                label: 'Umidade',
+                backgroundColor: ['green', 'red'],
+                borderColor: 'black',
+                data:  [12, 19, 3, 5, 2, 3],
                 borderWidth: 2,
 
             }]
