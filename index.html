@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>ChartJS</title>
+</head>
+<body style="font-family: 'Trebuchet MS', sans-serif;">
+    
+    <div style="position: relative; height:35vh; width:39vw; display: flex;">
+        <canvas id="graficoLucroePerda" style="margin-right: 45px; border: 1px solid black; border-radius: 25px;">
+
+        </canvas>
+        <canvas id="graficoCaminhao" style="margin-right: 45px; border: 1px solid black; border-radius: 25px;">
+
+        </canvas>
+        <canvas id="graficoLucroEmReais" style="margin-right: 45px; border: 1px solid black; border-radius: 25px;">
+
+        </canvas>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const graficoLucroePerda = document.getElementById('graficoLucroePerda');
+    const labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'];
+    const tomatesEntregues = [700, 750, 780, 800, 850]
+    const tomatesPerdidos = [100, 110, 120, 100, 150]
+
+
+
+    const rondaCaminhao = document.getElementById('graficoCaminhao');
+    const CaminhoesRodando = [10, 23, 30, 29, 25];
+    const CaminhoesEntregues = [9, 22, 31, 27, 21];
+
+
+    const graficoLucroEmReais = document.getElementById('graficoLucroEmReais');
+    const desc = ['Lucro em Reais', 'Perda em Reais']
+    const DinheiroEconomizado = 156486
+    const DinheiroPerdido = 56710
+
+
+    new Chart(graficoLucroePerda, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Tomates Entregues',
+                    backgroundColor: 'green',
+                    borderColor: 'black',
+                    data: tomatesEntregues,
+                    borderWidth: 2,
+                    borderRadius: 20
+
+                },
+                {
+                    label: 'Tomates Perdidos',
+                    backgroundColor: 'red',
+                    borderColor: 'black',
+                    data: tomatesPerdidos,
+                    borderRadius: 20,
+                    borderWidth: 2
+
+                },
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+    new Chart(rondaCaminhao, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Caminhoes Rodando',
+                    backgroundColor: 'aqua',
+                    borderColor: 'black',
+                    data: CaminhoesRodando,
+                    borderWidth: 2,
+                    borderRadius: 20
+
+                },
+                {
+                    label: 'Caminhões Entregues',
+                    backgroundColor: 'blue',
+                    borderColor: 'black',
+                    data: CaminhoesEntregues,
+                    borderRadius: 20,
+                    borderWidth: 2
+
+                },
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+    new Chart(graficoLucroEmReais, {
+        type: 'doughnut',
+        data: {
+            labels: desc,
+            datasets: [
+                {
+                    label: ['R$'],
+                    backgroundColor: ['green', 'red'],
+                    borderColor: 'black',
+                    data: [DinheiroEconomizado, DinheiroPerdido],
+                    borderWidth: 2,
+
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+</script>
